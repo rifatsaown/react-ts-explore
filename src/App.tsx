@@ -10,17 +10,26 @@ interface iFriend{
   age: number;
   gender?: string;
 }
+const Persons: iPerson[] =[
+  { name: "John", age: 20 },
+  { name: "Jane", age: 21 },
+  { name: "Jack", age: 22 },
+];
+
+const Friends :iFriend[] = [
+  {name: "Jahangir", age: 20, gender: "Male"},
+  {name: "Sorna", age: 18, gender: "Female"},
+]
 
 function App() {
+ 
   return (
     <>
       <div className="App">
-        <h1>React Typescript</h1>
-        
-        <Person name="John" age ={19}></Person>
-        <Person name="Jane" age={20} />
-        <Friend name="Ali" age={21} gender="Male"/>
-        <Friend name="Kodom" age={22} gender="Female"/>
+      {
+        Persons.map(person=><Person name= {person.name} age= {person.age}/>)
+      }
+      {Friends.map(friend=><Friend name={friend.name} age={friend.age} gender={friend.gender}/> )}
       </div>
     </>
   );
@@ -36,13 +45,13 @@ function Person(props: iPerson) {
   );
 }
 
-function Friend(props: iFriend) {
+function Friend({name,age,gender}: iFriend) {
   return (
     <>
       <div className="friend">
-        <h1>{props.name}</h1>
-        <p>Age : {props.age}</p>
-        <p>Gender : {props.gender}</p>
+        <h1>{name}</h1>
+        <p>Age : {age}</p>
+        <p>Gender : {gender}</p>
       </div>
     </>
   );
